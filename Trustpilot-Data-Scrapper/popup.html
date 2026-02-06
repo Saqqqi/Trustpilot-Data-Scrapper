@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trustpilot Intel Pro</title>
+  <script src="popup.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00b67a;
+      --primary-glow: rgba(0, 182, 122, 0.3);
+      --dark: #0b0f1a;
+      --dark-card: #161b2c;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--dark);
+      margin: 0;
+      padding: 16px;
+      width: 320px;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-box {
+      background: var(--primary);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px var(--primary-glow);
+    }
+
+    .header h1 {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .header h1 span {
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    /* Main Action */
+    #scrapeButton {
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 14px;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 182, 122, 0.2);
+      margin-bottom: 12px;
+    }
+
+    #scrapeButton:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 182, 122, 0.3);
+      filter: brightness(1.1);
+    }
+
+    #scrapeButton:disabled {
+      background: #1e293b;
+      color: #64748b;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Data Display */
+    .output-section {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      height: 100px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+
+    .output-section::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .output-section::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 10px;
+    }
+
+    #output div {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Log Box */
+    #log {
+      background: #000;
+      height: 60px;
+      border-radius: 8px;
+      padding: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 9px;
+      color: #00ff00;
+      overflow-y: auto;
+      margin-bottom: 16px;
+      opacity: 0.8;
+      border: 1px solid rgba(0, 255, 0, 0.1);
+    }
+
+    /* Secondary Controls */
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      border: 1px solid var(--border);
+      color: #94a3b8;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+      color: #fff;
+    }
+
+    .btn-clear:hover {
+      background: #450a0a;
+      color: #f87171;
+      border-color: #ef4444;
+    }
+
+    /* Footer Stats */
+    .footer-note {
+      text-align: center;
+      font-size: 8px;
+      color: #475569;
+      margin-top: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    </div>
+    <h1>Trustpilot <span>Intel</span></h1>
+  </div>
+
+  <button id="scrapeButton">Scrape Business Data</button>
+
+  <div class="output-section">
+    <div id="output" class="loading">Standby for data...</div>
+  </div>
+
+  <div id="log">Initializing engine...</div>
+
+  <div class="button-group">
+    <button id="downloadButton" class="btn-secondary">Export JSON</button>
+    <button id="clearButton" class="btn-secondary btn-clear">Reset System</button>
+  </div>
+
+  <div class="footer-note">Enterprise Extraction Suite v1.1</div>
+</body>
+
+</html>

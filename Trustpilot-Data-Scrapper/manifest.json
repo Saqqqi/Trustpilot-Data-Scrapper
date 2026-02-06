@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Trustpilot Scraper",
-  "version": "1.0",
-  "description": "Scrape business URLs and data from Trustpilot categories and business pages",
+  "version": "1.1",
+  "description": "Scrape business URLs and data from Trustpilot categories, search, and business pages",
   "icons": {
     "16": "images/logo-white-cropped (1).svg",
     "48": "images/logo-white-cropped (1).svg",
@@ -23,7 +23,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://www.trustpilot.com/review/*", "*://www.trustpilot.com/categories/*"],
+      "matches": [
+        "*://www.trustpilot.com/review/*", 
+        "*://www.trustpilot.com/categories/*",
+        "*://www.trustpilot.com/search*"
+      ],
       "js": ["content.js"]
     }
   ],
