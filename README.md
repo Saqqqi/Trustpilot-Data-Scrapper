@@ -25,6 +25,12 @@
 *   **Lead Cleaner**: Automatically strips UTM tracking codes from URLs for professional output.
 *   **Instant Reset**: Clear your export history with one click when starting new campaigns.
 
+### 🕵️ Data Acquisition: The Scrapper
+*   **Chrome Extension (Manifest V3)**: A custom-built automated browser extension for high-speed data harvesting.
+*   **Automated Pagination**: Navigates through hundreds of Trustpilot category pages without human intervention.
+*   **Intelligent Extraction**: Uses content scripts to pull deep-linked data including hidden emails, social profiles, and categories.
+*   **Direct Sync**: Seamlessly pushes captured leads to the dashboard database via a secure POST API.
+
 ---
 
 ## 🛠️ Technical Implementation
