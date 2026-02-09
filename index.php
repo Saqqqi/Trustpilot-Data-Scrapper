@@ -348,6 +348,12 @@ $flagged_count = $flagged_result->fetch_assoc()['count'];
                                                 <?php echo $isClaimed ? 'Verified' : 'Unclaimed'; ?>
                                             </span>
                                         </div>
+                                        <?php if ((int)($l['is_exported'] ?? 0) === 1): ?>
+                                        <div class="flex items-center gap-2">
+                                            <i data-lucide="check-check" class="w-3 h-3 text-indigo-400"></i>
+                                            <span class="text-[9px] font-bold uppercase tracking-widest text-indigo-400">Exported</span>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
 

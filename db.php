@@ -38,10 +38,12 @@ $table_sql = "CREATE TABLE IF NOT EXISTS trustpilot_leads (
     use_ai VARCHAR(50),
     logo_url TEXT,
     is_flagged TINYINT(1) DEFAULT 0,
+    is_exported TINYINT(1) DEFAULT 0,
     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 $conn->query($table_sql);
 
-// Add flag column if it doesn't exist (for existing databases)
+// Add columns if they don't exist (for existing databases)
 $conn->query("ALTER TABLE trustpilot_leads ADD COLUMN IF NOT EXISTS is_flagged TINYINT(1) DEFAULT 0");
+$conn->query("ALTER TABLE trustpilot_leads ADD COLUMN IF NOT EXISTS is_exported TINYINT(1) DEFAULT 0");
 ?>
