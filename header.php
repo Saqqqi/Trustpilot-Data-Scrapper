@@ -1,4 +1,4 @@
-x`<?php
+<?php
 // header.php - Dynamic Premium Header for Trustpilot Intel
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
